@@ -1,0 +1,51 @@
+usage: snmp_notifier [<flags>]
+
+A tool to relay Prometheus alerts as SNMP traps
+
+Flags:
+  -h, --help                     Show context-sensitive help (also try --help-long and --help-man).
+      --web.listen-address=:9464  
+                                 Address to listen on for web interface and telemetry.
+      --alert.severity-label="severity"  
+                                 Label where to find the alert severity.
+      --alert.severities="critical,warning,info"  
+                                 The ordered list of alert severities, from more prioritary to less prioritary.
+      --alert.default-severity="critical"  
+                                 The alert severity if none is provided via labels.
+      --snmp.version=V2c         SNMP version. V2c and V3 are currently supported.
+      --snmp.destination=127.0.0.1:162  
+                                 SNMP trap server destination.
+      --snmp.retries=1           SNMP number of retries
+      --snmp.trap-oid-label="oid"  
+                                 Label where to find the trap OID.
+      --snmp.trap-default-oid="1.3.6.1.4.1.98789.0.1"  
+                                 Trap OID to send if none is found in the alert labels.
+      --snmp.trap-description-template=description-template.tpl  
+                                 SNMP description template.
+      --snmp.community="public"  SNMP community (V2c only). Passing secrets to the command line is not recommanded, consider using the SNMP_NOTIFIER_COMMUNITY environment variable instead.
+      --snmp.authentication-enabled  
+                                 Enable SNMP authentication (V3 only).
+      --snmp.authentication-protocol=MD5  
+                                 Protocol for password encryption (V3 only). MD5 and SHA are currently supported.
+      --snmp.authentication-username=USERNAME  
+                                 SNMP authentication username (V3 only). Passing secrets to the command line is not recommanded, consider using the SNMP_NOTIFIER_AUTH_USERNAME environment
+                                 variable instead.
+      --snmp.authentication-password=PASSWORD  
+                                 SNMP authentication password (V3 only). Passing secrets to the command line is not recommanded, consider using the SNMP_NOTIFIER_AUTH_PASSWORD environment
+                                 variable instead.
+      --snmp.private-enabled     Enable SNMP encryption (V3 only).
+      --snmp.private-protocol=DES  
+                                 Protocol for SNMP data transmission (V3 only). DES and AES are currently supported.
+      --snmp.private-password=SECRET  
+                                 SNMP private password (V3 only). Passing secrets to the command line is not recommanded, consider using the SNMP_NOTIFIER_PRIV_PASSWORD environment variable
+                                 instead.
+      --snmp.security-engine-id=SECURITY_ENGINE_ID  
+                                 SNMP security engine ID (V3 only).
+      --snmp.context-engine-id=CONTEXT_ENGINE_ID  
+                                 SNMP context engine ID (V3 only).
+      --snmp.context-name=CONTEXT_ENGINE_NAME  
+                                 SNMP context name (V3 only).
+      --log.level="info"         Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]
+      --log.format="logger:stderr"  
+                                 Set the log target and format. Example: "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
+      --version                  Show application version.
