@@ -7,9 +7,7 @@ FROM scratch
 COPY --from=builder /opt/app-root/src/snmp_notifier /usr/bin/
 COPY description-template.tpl  /etc/snmp_notifier/description-template.tpl
 EXPOSE      9464
-USER 1001
 ENTRYPOINT  ["/usr/bin/snmp_notifier"]
-CMD ["--snmp.trap-description-template=/etc/snmp_notifier/description-template.tpl"]
 LABEL io.k8s.display-name="SNMP Notifier" \
       io.k8s.description="A webhook to relay Prometheus alerts as SNMP traps" \
       io.openshift.tags="snmp"
